@@ -1,0 +1,15 @@
+package com.unworkout_users.modelo;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class user {
+	
+	private Long id;
+	private String nombres;
+	private String apellidos;
+	private String email;
+}
