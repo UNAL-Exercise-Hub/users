@@ -1,0 +1,17 @@
+package com.unworkout_users.controllers;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import com.unworkout_users.model.dto.UserRequest;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addUser(@RequestBody UserRequest userRequest) {
+        this.userService.addUser(userRequest);
+    }
+}

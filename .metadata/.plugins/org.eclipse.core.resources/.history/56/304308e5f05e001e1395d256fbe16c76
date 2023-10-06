@@ -1,0 +1,26 @@
+package com.unworkout_users.model.dto;
+
+import java.time.LocalDate;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class UserRequest {
+    private String nombres;
+    private String apellidos;
+    private LocalDate fecha_nacimiento;
+    private String sexo;
+    private int cel;
+    private String email;
+    //private List<Objetivo> objetivos;
+    //private List<Medidas> medidas;
+    
+    
+	
+}

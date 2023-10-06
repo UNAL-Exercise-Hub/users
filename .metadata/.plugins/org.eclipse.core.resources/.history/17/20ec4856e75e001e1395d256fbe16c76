@@ -1,0 +1,31 @@
+package com.unworkout_users.servicio;
+
+import org.springframework.stereotype.Service;
+
+import com.unworkout_users.dto.UsuarioRegistroDTO;
+import com.unworkout_users.model.Usuario;
+import com.unworkout_users.repositories.UserRepository;
+
+@Service
+public class UsuarioServicioImpl implements UsuarioServicio {
+
+    private UserRepository UserRepository;
+
+    public UsuarioServicioImpl(com.unworkout_users.repositories.UserRepository userRepository) {
+        super();
+        UserRepository = userRepository;
+    }
+
+    @Override
+    public Usuario guardarUsuario(UsuarioRegistroDTO resgistroDTO) {
+        Usuario usuario = new Usuario(
+                resgistroDTO.getNombres(),
+                resgistroDTO.getApellidos(),
+                resgistroDTO.getFecha_nacimiento(),
+                resgistroDTO.getSexo(),
+                resgistroDTO.getCel(),
+                resgistroDTO.getEmail());
+        return UserRepository.save(usuario);
+    }
+
+}

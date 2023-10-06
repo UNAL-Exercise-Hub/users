@@ -1,0 +1,13 @@
+unworkout_users_db
+
+1. Crear la imagen Docker, ejecutando dentro del mismo directorio el siguiente comando:
+
+docker build -t unworkout_users_db .
+
+2. Desplegar la base de datos, mediante el siguiente comando:
+
+docker run -d -t -i -p 3307:3307 --name unworkout_users_db unworkout_users_db
+
+3. Desplegar el cliente web de MySQL PhpMyAdmin, mediante el siguiente comando:
+
+docker run --name db_user -d --link unworkout_users_db:db -p 8081:80 phpmyadmin

@@ -1,0 +1,5 @@
+package com.unworkout_users.model.dto;
+
+public class UserRequest {
+
+}

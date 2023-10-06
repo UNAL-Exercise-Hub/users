@@ -1,0 +1,20 @@
+package com.unworkout_users.controlador;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import com.unworkout_users.dto.UsuarioRegistroDTO;
+
+@RestController
+@RequestMapping("/registro")
+
+public class RegistroUsuarioControlador {
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registrarUsuario(@RequestBody UsuarioRegistroDTO usuarioRegistroDTO) {
+        //this.usuarioServicio.registrarUsuario(usuarioRegistroDTO);
+    }
+
+}

@@ -1,0 +1,52 @@
+package com.unworkout_users.services;
+
+import org.apache.catalina.User;
+import org.hibernate.mapping.List;
+import org.springframework.stereotype.Service;
+
+import com.unworkout_users.model.dto.UserRequest;
+import com.unworkout_users.model.dto.UserResponse;
+import com.unworkout_users.model.entities.Usuario;
+import com.unworkout_users.repositories.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class UserService {
+    private final UserRepository userRepository;
+
+    public void addUser(UserRequest userRequest) {
+        var user = Usuario.builder()
+                .nombres(userRequest.getNombres())
+                .apellidos(userRequest.getApellidos())
+                .fecha_nacimiento(userRequest.getFecha_nacimiento())
+                .sexo(userRequest.getSexo())
+                .cel(userRequest.getCel())
+                .email(userRequest.getEmail())
+                .build();
+
+        userRepository.save(user);
+
+        log.info("User added: {}", user);
+    }
+
+    public List<UserResponse> getAllUsers() {
+        var users = userRepository.findAll();
+
+        return users.stream().map(this::mapToUserResponse).toList();
+    }
+
+    private UserResponse mapToUserResponse(User user) {
+        return UserResponse.builder()
+                .id_usuario(user.getId())
+                .nombres(user.getName())
+                .apellidos(user.getApellidos())
+                .fecha_nacimiento(user.getFecha_nacimiento())
+                .sexo(user.getSexo())
+                .cel(user.getCel())
+                .build();
+    }
+}

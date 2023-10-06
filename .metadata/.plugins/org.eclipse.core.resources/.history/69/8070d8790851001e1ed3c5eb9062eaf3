@@ -1,5 +1,0 @@
-package com.unworkout_users.respositorio;
-
-public interface UserRepositorio {
-
-}
