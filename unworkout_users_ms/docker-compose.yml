@@ -2,11 +2,11 @@ version: '3'
 services:
   ###MySQL database for user
   db-users:
-    container_name: db-users
+    container_name: unworkout_users_db
     image: mysql:8.0.33
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ms_users
+      MYSQL_DATABASE: unworkout_users_db
       MYSQL_USER: julcalfonsocar
       MYSQL_PASSWORD: jul2023
       MYSQL_ROOT_PASSWORD: root
