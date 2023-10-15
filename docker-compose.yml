@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  users_ms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: user_ms_unworkout
+    ports:
+     - "8082:8082"
+    
+  
+  ###MySQL database for user
+  usersdb:
+    container_name: users_db_unworkout
+    image: mysql:5.7.28
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: "unworkout_users_db"
+      MYSQL_USER: "julcalfonsocar"
+      MYSQL_PASSWORD: "jul2023"
+      MYSQL_ROOT_PASSWORD: "jul2023"
+    ports:
+      - "3306:3306"
+    
