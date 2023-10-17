@@ -50,4 +50,15 @@ public class UserService {
                 .email(user.getEmail())
                 .build();
     }
+
+    public Long getUserIdByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            return user.getId_usuario();
+        } else {
+            // Puedes manejar el caso en el que el usuario no se encuentre.
+            // Puedes lanzar una excepción personalizada o simplemente devolver null o -1 como indicador de que no se encontró el usuario.
+            return -1L;
+        }
+    }
 }
