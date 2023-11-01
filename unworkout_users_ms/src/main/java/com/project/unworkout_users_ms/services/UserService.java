@@ -1,14 +1,16 @@
 package com.project.unworkout_users_ms.services;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.project.unworkout_users_ms.model.dtos.UserRequest;
 import com.project.unworkout_users_ms.model.dtos.UserResponse;
 import com.project.unworkout_users_ms.model.entities.User;
 import com.project.unworkout_users_ms.repositories.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,9 +35,26 @@ public class UserService {
         log.info("User added: {}", user);
     }
 
+    public Boolean updateUser(Long userId, UserRequest userRequest) {
+        // Buscar el usuario existente por ID
+        try {
+            User existingUser = userRepository.findById(userId).get();
+
+            existingUser.setNombres(userRequest.getNombres());
+            existingUser.setApellidos(userRequest.getApellidos());
+            existingUser.setFecha_nacimiento(userRequest.getFecha_nacimiento());
+            existingUser.setSexo(userRequest.getSexo());
+            existingUser.setCel(userRequest.getCel());
+
+            userRepository.save(existingUser);
+            return true;
+        } catch (java.util.NoSuchElementException e) {
+            return false;
+        }
+    }
+
     public List<UserResponse> getAllUsers() {
         var users = userRepository.findAll();
-
         return users.stream().map(this::mapToUserResponse).toList();
     }
 
@@ -56,9 +75,17 @@ public class UserService {
         if (user != null) {
             return user.getId_usuario();
         } else {
-            // Puedes manejar el caso en el que el usuario no se encuentre.
-            // Puedes lanzar una excepción personalizada o simplemente devolver null o -1 como indicador de que no se encontró el usuario.
-            return -1L;
+            return null;
+        }
+    }
+
+    public boolean deleteUser(Long userId) {
+        try {
+            User user = userRepository.findById(userId).get();
+            userRepository.delete(user);
+            return true;
+        } catch (java.util.NoSuchElementException e) {
+            return false;
         }
     }
 }
