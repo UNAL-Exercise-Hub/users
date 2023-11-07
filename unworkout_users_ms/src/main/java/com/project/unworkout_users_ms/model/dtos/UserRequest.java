@@ -15,6 +15,7 @@ public class UserRequest {
 
     private String nombres;
     private String apellidos;
+    private String documento;
     private LocalDate fecha_nacimiento;
     private String sexo;
     private Long cel;

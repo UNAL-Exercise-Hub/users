@@ -24,6 +24,7 @@ public class UserService {
         var user = User.builder()
                 .nombres(userRequest.getNombres())
                 .apellidos(userRequest.getApellidos())
+                .documento(userRequest.getDocumento())
                 .fecha_nacimiento(userRequest.getFecha_nacimiento())
                 .sexo(userRequest.getSexo())
                 .cel(userRequest.getCel())
@@ -42,6 +43,7 @@ public class UserService {
 
             existingUser.setNombres(userRequest.getNombres());
             existingUser.setApellidos(userRequest.getApellidos());
+            existingUser.setDocumento(userRequest.getDocumento());
             existingUser.setFecha_nacimiento(userRequest.getFecha_nacimiento());
             existingUser.setSexo(userRequest.getSexo());
             existingUser.setCel(userRequest.getCel());
@@ -63,6 +65,7 @@ public class UserService {
                 .id_usuario(user.getId_usuario())
                 .nombres(user.getNombres())
                 .apellidos(user.getApellidos())
+                .documento(user.getDocumento())
                 .fecha_nacimiento(user.getFecha_nacimiento())
                 .sexo(user.getSexo())
                 .cel(user.getCel())

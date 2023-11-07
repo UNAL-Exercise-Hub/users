@@ -16,6 +16,7 @@ public class UserResponse {
     private Long id_usuario;
     private String nombres;
     private String apellidos;
+    private String documento;
     private LocalDate fecha_nacimiento;
     private String sexo;
     private Long cel;
